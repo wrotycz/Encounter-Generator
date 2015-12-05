@@ -1,0 +1,26 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html">
+<h:head>
+	<title>Encounter Generator Home</title>
+	<link href="./css/styles.css" rel="stylesheet" type="text/css" />
+</h:head>
+<h:body>
+	<h1 class="title">Welcome to Encounter Generator</h1>
+	<p>Test your luck brave ones!</p>
+	
+	<fieldset>
+		<legend>Generator Window</legend>
+		<h:form>
+			Put nessessary values down here:<br/>
+			Value 1: <h:inputText value="#{inputBean.input1}"/> <br/>
+			Value 2: <h:inputText value="#{inputBean.input2}"/> <br/>
+			Value 3: <h:inputText value="#{inputBean.input3}"/> <br/>
+			Value 4: <h:inputText value="#{inputBean.input4}"/> <br/>
+			Button: <h:commandButton value="Commit" action="#{inputBean.doGenerateEncounter}" />
+		</h:form>
+	</fieldset>
+
+</h:body>
+</html>
