@@ -25,6 +25,15 @@ public class DefaultResourceParser implements ResourceParser {
 
 	public DefaultResourceParser(String resourceName) {
 		this.resourceName = resourceName;
+		
+		try {
+			ServletContext servletContext = (ServletContext) FacesContext
+				        .getCurrentInstance().getExternalContext().getContext();
+			resourcePath = Paths.get(servletContext.getRealPath("/"), "WEB-INF", "Classes", resourceName);
+		} catch (InvalidPathException e) {
+			System.out.println("Invalid Path error: " + e);
+		}
+		
 		setResource();
 	}
 
@@ -35,18 +44,13 @@ public class DefaultResourceParser implements ResourceParser {
 	public Map<String, String[]> getResource() {
 		return resource;
 	}
-
+	
+	@Override
 	public void setResource() {
-		if (resourceName == null)
+		if (resourcePath == null) {
 			return;
-		
-		try {
-			ServletContext servletContext = (ServletContext) FacesContext
-				        .getCurrentInstance().getExternalContext().getContext();
-			resourcePath = Paths.get(servletContext.getRealPath("/"), "WEB-INF", "Classes", resourceName);
-		} catch (InvalidPathException e) {
-			System.out.println("Invalid Path error: " + e);
 		}
+			
 		
 		try (BufferedReader in = new BufferedReader(
 				new InputStreamReader(new FileInputStream(resourcePath.toFile())))) {
@@ -54,10 +58,9 @@ public class DefaultResourceParser implements ResourceParser {
 			String[] splittedLine;
 			String key;
 			String[] values;
-
+			
 			while ((line = in.readLine()) != null) {
-				splittedLine = line.split(" ");
-
+				splittedLine = line.split("\\t");
 				key = splittedLine[0];
 				values = new String[splittedLine.length - 1];
 				for (int i = 1; i < splittedLine.length; i++) {
@@ -80,11 +83,13 @@ public class DefaultResourceParser implements ResourceParser {
 	public void setResourceName(String resourceName) {
 		this.resourceName = resourceName;
 	}
-
+	
+	@Override
 	public Path getResourcePath() {
 		return resourcePath;
 	}
-
+	
+	@Override
 	public void setResourcePath(Path resourcePath) {
 		this.resourcePath = resourcePath;
 	}
