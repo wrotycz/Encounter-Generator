@@ -1,4 +1,4 @@
-package encountergenerator.beans;
+package encountergenerator.model;
 
 import encountergenerator.interfaces.Encounter;
 

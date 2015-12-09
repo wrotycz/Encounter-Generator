@@ -3,6 +3,7 @@ package encountergenerator.beans;
 import javax.faces.bean.ManagedBean;
 
 import encountergenerator.interfaces.Encounter;
+import encountergenerator.model.StandardEncounter;
 
 @ManagedBean
 public class InputBean {
