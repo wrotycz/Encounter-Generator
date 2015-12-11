@@ -1,6 +1,7 @@
 package encountergenerator.beans;
 
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 
 import encountergenerator.interfaces.Encounter;
 import encountergenerator.model.StandardEncounter;
@@ -11,9 +12,17 @@ public class InputBean {
 	String input1, input2, input3, input4;	
 	Encounter encounter;
 	
+	@ManagedProperty(value="#{resourceBean}")
+	private ResourceBean resourceBean;
+	
+	
 	public String doGenerateEncounter() {
 		encounter = new StandardEncounter(input1, input2, input3, input4);
 		return "encounter-discription";
+	}
+	
+	public void setResourceBean(ResourceBean resourceBean) {
+		this.resourceBean = resourceBean;
 	}
 
 	public String getInput1() {
