@@ -28,9 +28,7 @@ public class ResourceParserTests {
 	@Test
 	public void shouldBeAbleToParseProperly1() {
 		Path resourcePath = Paths.get("resources", "acHigh");
-		parser = new DefaultResourceParser();
-		parser.setResourcePath(resourcePath);
-		parser.setResource();
+		parser = new DefaultResourceParser(resourcePath);
 		Assert.assertNotNull("Parser should be created", parser);
 		
 		resource = new HashMap<>();
@@ -46,9 +44,7 @@ public class ResourceParserTests {
 	@Test
 	public void shouldBeAbleToParseProperly2() {
 		Path resourcePath = Paths.get("resources", "saveAll");
-		parser = new DefaultResourceParser();
-		parser.setResourcePath(resourcePath);
-		parser.setResource();
+		parser = new DefaultResourceParser(resourcePath);
 		Assert.assertNotNull("Parser should be created", parser);
 		
 		resource = new HashMap<>();

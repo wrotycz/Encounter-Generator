@@ -36,8 +36,10 @@ public class DefaultResourceParser implements ResourceParser {
 		
 		setResource();
 	}
-
-	public DefaultResourceParser() {
+	
+	public DefaultResourceParser(Path resourcePath) {
+		this.resourcePath = resourcePath;
+		setResource();
 	}
 
 	@Override
@@ -45,8 +47,7 @@ public class DefaultResourceParser implements ResourceParser {
 		return resource;
 	}
 	
-	@Override
-	public void setResource() {
+	private void setResource() {
 		if (resourcePath == null) {
 			return;
 		}
@@ -79,19 +80,9 @@ public class DefaultResourceParser implements ResourceParser {
 	public String getResourceName() {
 		return resourceName;
 	}
-
-	public void setResourceName(String resourceName) {
-		this.resourceName = resourceName;
-	}
 	
-	@Override
 	public Path getResourcePath() {
 		return resourcePath;
-	}
-	
-	@Override
-	public void setResourcePath(Path resourcePath) {
-		this.resourcePath = resourcePath;
 	}
 
 }
